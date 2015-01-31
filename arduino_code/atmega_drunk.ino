@@ -76,10 +76,13 @@ void loop() {
     while (millis() >= splashWait){
       //Serial.println(startSplash);
       display.clearDisplay(); // Clears everything off the screen
-      display.setTextSize(1); // Set text size
+      display.setTextSize(2); // Set text size
       display.setTextColor(WHITE); // Set text colour
-      display.setCursor(0,0); // Set cursor postion
-      display.println("Press sensor button\n to skip warmup\nPress reset button \nfor debug mode"); // Print to screen
+      display.setCursor(25,0); // Set cursor postion
+      display.println("#Atmega");
+      display.setCursor(35,15); // Set cursor postion
+      display.println("Drunk");
+      //display.println("Press GREEN button\n to skip warmup\nPress RED button \nfor debug mode"); // Print to screen
       display.display(); // Writes to the screen
       startSplash += 1; // Adds 1 onto startSplash
       splashWait += 1000;
@@ -128,11 +131,16 @@ void loop() {
       int sensor = analogRead(analogPin); // Reads the analogPin
       drunkLevel = map(sensor, minReading, maxReading,0, 10);
       display.clearDisplay(); // Clears everything off the screen
-      display.setTextSize(1); // Set text size
+      display.setTextSize(2); // Set text size
       display.setTextColor(WHITE); // Set text colour
-      display.setCursor(0,0); // Set cursor postion
-      display.println("Blow into sensor"); // Print to screen
-      display.println("for 3 seconds"); // Print to screen
+      display.setCursor(45,0); // Set cursor postion
+      display.println("Blow"); // Print to screen
+      display.setCursor(50,15); // Set cursor postion
+      display.println("for"); // Print to screen
+      display.setCursor(60,30); // Set cursor postion
+      display.println("3"); // Print to screen
+      display.setCursor(25,45); // Set cursor postion
+      display.println("seconds"); // Print to screen
       display.display(); // Writes to the screen
     }
     
@@ -141,8 +149,8 @@ void loop() {
       display.setTextSize(1); // Set text size
       display.setTextColor(WHITE); // Set text colour
       display.setCursor(0,0); // Set cursor postion
-      display.println("Sensor levels"); // Print to screen
-      display.println(minReading); // Print to screen
+      display.println("Recalibrating\nsensor"); // Print to screen
+      //display.println(minReading); // Print to screen
       int sensor = analogRead(analogPin); // Reads the analogPin
       minReading = sensor; // Sets the minReading to the curren sensor reading
       maxReading = sensor + 300;
@@ -152,10 +160,13 @@ void loop() {
   if (debugMode == 0) {
     if (millis() >= displayScreen){
       display.clearDisplay(); // Clears everything off the screen
-      display.setTextSize(1); // Set text size
+      display.setTextSize(2); // Set text size
       display.setTextColor(WHITE); // Set text colour
-      display.setCursor(0,0); // Set cursor postion
-      display.print("Drunk Level "); // Print to screen
+      display.setCursor(35,0); // Set cursor postion
+      display.print("Drunk"); // Print to screen
+      display.setCursor(35,15); // Set cursor postion
+      display.print("Score"); // Print to screen
+      display.setCursor(60,30); // Set cursor postion
       display.println(drunkLevel); // Print to screen
       display.display(); // Writes to the screen
     displayScreen += 100;
