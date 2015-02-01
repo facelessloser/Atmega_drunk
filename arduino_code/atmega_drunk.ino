@@ -15,7 +15,7 @@ int i;
 int startSplash;
 int firstRun = 1;
 int debugMode = 0;
-//int adding = 500;
+int adding = 500;
 
 // Delay values
 unsigned long displayScreen;
@@ -57,7 +57,7 @@ void loop() {
       startSplash = 5;
       firstRun = 0;
       minReading = sensor; // Sets the minReading to the curren sensor reading
-      maxReading = sensor + 300; // Sets the maxReading to the curren sensor reading plus 300
+      maxReading = sensor + adding; // Sets the maxReading to the curren sensor reading plus 300
       timeSensor = millis(); 
     }
     previousSensor = readingSensor;
@@ -68,7 +68,7 @@ void loop() {
       //Serial.println("reset");
       debugMode = 1; // Sets debug flag
       minReading = sensor; // Sets the minReading to the curren sensor reading
-      maxReading = sensor + 300; // Sets the maxReading to the curren sensor reading plus 300
+      maxReading = sensor + adding; // Sets the maxReading to the curren sensor reading plus 300
       timeSensor = millis();
     }
     previousReset = readingReset;
@@ -80,7 +80,7 @@ void loop() {
       display.setTextColor(WHITE); // Set text colour
       display.setCursor(25,0); // Set cursor postion
       display.println("#Atmega");
-      display.setCursor(35,15); // Set cursor postion
+      display.setCursor(35,20); // Set cursor postion
       display.println("Drunk");
       //display.println("Press GREEN button\n to skip warmup\nPress RED button \nfor debug mode"); // Print to screen
       display.display(); // Writes to the screen
@@ -146,14 +146,16 @@ void loop() {
     
     while(millis() <= resetTime){
       display.clearDisplay(); // Clears everything off the screen
-      display.setTextSize(1); // Set text size
+      display.setTextSize(2); // Set text size
       display.setTextColor(WHITE); // Set text colour
-      display.setCursor(0,0); // Set cursor postion
-      display.println("Recalibrating\nsensor"); // Print to screen
+      display.setCursor(20,0); // Set cursor postion
+      display.println("Reseting"); // Print to screen
+      display.setCursor(30,20); // Set cursor postion
+      display.println("sensor"); // Print to screen
       //display.println(minReading); // Print to screen
       int sensor = analogRead(analogPin); // Reads the analogPin
       minReading = sensor; // Sets the minReading to the curren sensor reading
-      maxReading = sensor + 300;
+      maxReading = sensor + adding;
       display.display(); // Writes to the screen
     }
     
@@ -164,10 +166,19 @@ void loop() {
       display.setTextColor(WHITE); // Set text colour
       display.setCursor(35,0); // Set cursor postion
       display.print("Drunk"); // Print to screen
-      display.setCursor(35,15); // Set cursor postion
+      display.setCursor(35,20); // Set cursor postion
       display.print("Score"); // Print to screen
-      display.setCursor(60,30); // Set cursor postion
-      display.println(drunkLevel); // Print to screen
+      
+      if (drunkLevel < 10) { // If its a single digit number the centring needs to be different
+        display.setCursor(60,40); // Set cursor postion
+        display.println(drunkLevel); // Print to screen
+      }
+      
+      else if (drunkLevel >= 10) { // If its a double digit number the centring needs to be different
+        display.setCursor(50,40); // Set cursor postion
+        display.println(drunkLevel); // Print to screen
+      }
+      
       display.display(); // Writes to the screen
     displayScreen += 100;
   }
@@ -202,19 +213,36 @@ void splashScreen() {
   // Warm up code
   for(i = 0; i < 100; i++) {
     display.clearDisplay(); // Clears everything off the screen
-    display.setTextSize(1); // Set text size
+    display.setTextSize(2); // Set text size
     display.setTextColor(WHITE); // Set text colour
-    display.setCursor(0,0); // Set cursor postion
+    display.setCursor(5,0); // Set cursor postion
     display.println("Warming up"); // Print to screen
-    display.print(i); // Print to screen
-    display.print("%"); // Print to screen
+    
+    if (i < 10) { // If its a single digit number the centring needs to be different
+      display.setCursor(55,20); // Set cursor postion
+      display.print(i); // Print to screen
+      display.print("%"); // Print to screen
+    }
+    
+    else if (i >= 10) { // If its a double digit number the centring needs to be different
+      display.setCursor(50,20); // Set cursor postion
+      display.print(i); // Print to screen
+      display.print("%"); // Print to screen
+    }
+    
+    else if (i == 100) { // If its a triple digit number the centring needs to be different
+      display.setCursor(40,20); // Set cursor postion
+      display.print(i); // Print to screen
+      display.print("%"); // Print to screen
+    }
+    
     display.display(); // Writes to the screen
     delay(600); //Dirty delay, god I hate these things
   }
   
   int sensor = analogRead(analogPin); // Reads the analogPin
   minReading = sensor; // Sets the minReading to the curren sensor reading
-  maxReading = sensor + 300; // Sets the maxReading to the curren sensor reading plus 300
+  maxReading = sensor + adding; // Sets the maxReading to the curren sensor reading plus 300
   startSplash = 5; // Sets startSplash to 5 so it will skip the countdown when done
   firstRun = 0; // Sets firstRun to 0 so it wouldnt run the warmup code again
 }
