@@ -133,14 +133,6 @@ void loop() {
       display.clearDisplay(); // Clears everything off the screen
       display.setTextSize(2); // Set text size
       display.setTextColor(WHITE); // Set text colour
-      /*display.setCursor(45,0); // Set cursor postion
-      display.println("Blow"); // Print to screen
-      display.setCursor(50,15); // Set cursor postion
-      display.println("for"); // Print to screen
-      display.setCursor(60,30); // Set cursor postion
-      display.println("3"); // Print to screen
-      display.setCursor(25,45); // Set cursor postion
-      display.println("seconds"); // Print to screen*/
       display.setCursor(45,0); // Set cursor postion
       display.println("Blow"); // Print to screen
       display.setCursor(50,20); // Set cursor postion
