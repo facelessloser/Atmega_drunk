@@ -11,7 +11,7 @@ int analogPin = 1;  // Alcohol sensor
 int minReading; // Stores the lowest number as base
 int maxReading;  // Stores the new high
 int drunkLevel;  // Highest score
-int i;
+int loadingPercent;
 int startSplash;
 int firstRun = 1;
 int debugMode = 0;
@@ -49,7 +49,7 @@ void setup()   {
   
 void loop() {
   int sensor = analogRead(analogPin); // Reads the analogPin
-
+  
   while (startSplash < 5) {
     
     readingSensor = digitalRead(buttonSensor);
@@ -133,14 +133,18 @@ void loop() {
       display.clearDisplay(); // Clears everything off the screen
       display.setTextSize(2); // Set text size
       display.setTextColor(WHITE); // Set text colour
-      display.setCursor(45,0); // Set cursor postion
+      /*display.setCursor(45,0); // Set cursor postion
       display.println("Blow"); // Print to screen
       display.setCursor(50,15); // Set cursor postion
       display.println("for"); // Print to screen
       display.setCursor(60,30); // Set cursor postion
       display.println("3"); // Print to screen
       display.setCursor(25,45); // Set cursor postion
-      display.println("seconds"); // Print to screen
+      display.println("seconds"); // Print to screen*/
+      display.setCursor(45,0); // Set cursor postion
+      display.println("Blow"); // Print to screen
+      display.setCursor(50,20); // Set cursor postion
+      display.println("now"); // Print to screen
       display.display(); // Writes to the screen
     }
     
@@ -164,19 +168,96 @@ void loop() {
       display.clearDisplay(); // Clears everything off the screen
       display.setTextSize(2); // Set text size
       display.setTextColor(WHITE); // Set text colour
-      display.setCursor(35,0); // Set cursor postion
-      display.print("Drunk"); // Print to screen
-      display.setCursor(35,20); // Set cursor postion
-      display.print("Score"); // Print to screen
+      display.setCursor(5,0); // Set cursor postion
+      display.print("How Drunk?"); // Print to screen
       
       if (drunkLevel < 10) { // If its a single digit number the centring needs to be different
-        display.setCursor(60,40); // Set cursor postion
+        display.setCursor(60,20); // Set cursor postion
         display.println(drunkLevel); // Print to screen
       }
       
       else if (drunkLevel >= 10) { // If its a double digit number the centring needs to be different
-        display.setCursor(50,40); // Set cursor postion
+        display.setCursor(50,20); // Set cursor postion
         display.println(drunkLevel); // Print to screen
+      }
+      
+      //display.setTextColor(BLACK, WHITE); // Set text colour
+      display.setTextSize(1); // Set text size
+      
+      if (drunkLevel == 0) {
+        display.setCursor(10,40); // Set cursor postion
+        display.print("Sober as a judge!"); // Print to screen
+      }
+      
+      else if (drunkLevel == 1) {
+        display.setCursor(45,40); // Set cursor postion
+        display.print("Are you"); // Print to screen
+        display.setCursor(35,50); // Set cursor postion
+        display.print("even trying"); // Print to screen
+      }
+      
+      else if (drunkLevel == 2) {
+        display.setCursor(30,40); // Set cursor postion
+        display.print("Can you feel"); // Print to screen
+        display.setCursor(40,50); // Set cursor postion
+        display.print("the buzz"); // Print to screen
+      }
+      
+      else if (drunkLevel == 3) {
+        display.setCursor(13,40); // Set cursor postion
+        display.print("Now your talking"); // Print to screen
+        display.setCursor(10,50); // Set cursor postion
+        display.print("get some music on"); // Print to screen
+      }
+      
+      else if (drunkLevel == 4) {
+        display.setCursor(20,40); // Set cursor postion
+        display.print("Now the party's"); // Print to screen
+        display.setCursor(25,50); // Set cursor postion
+        display.print("getting going"); // Print to screen
+      }
+      
+      else if (drunkLevel == 5) {
+        display.setCursor(10,40); // Set cursor postion
+        display.print("You might want to"); // Print to screen
+        display.setCursor(10,50); // Set cursor postion
+        display.print("start on the shots"); // Print to screen
+      }
+      
+      else if (drunkLevel == 6) {
+        display.setCursor(0,40); // Set cursor postion
+        display.print("Your well on your way"); // Print to screen
+      }
+      
+      else if (drunkLevel == 7) {
+        display.setCursor(20,40); // Set cursor postion
+        display.print("You've on a roll"); // Print to screen
+      }
+      
+      else if (drunkLevel == 8) {
+        display.setCursor(15,40); // Set cursor postion
+        display.print("Pretty impressive"); // Print to screen
+        display.setCursor(10,50); // Set cursor postion
+        display.print("Have you puked yet?"); // Print to screen
+      }
+      
+      else if (drunkLevel == 9) {
+        display.setCursor(15,40); // Set cursor postion
+        display.print("The room will be"); // Print to screen
+        display.setCursor(17,50); // Set cursor postion
+        display.print("spinning tonight"); // Print to screen
+      }
+      
+      else if (drunkLevel == 10) {
+        display.setCursor(25,40); // Set cursor postion
+        display.print("Your steaming"); // Print to screen
+      }
+      
+      else if (drunkLevel >= 11) {
+        display.setCursor(25,40); // Set cursor postion
+        display.print("Off the chart"); // Print to screen
+        display.setCursor(5,50); // Set cursor postion
+        display.print("Can you even see XXX"); // Print to screen
       }
       
       display.display(); // Writes to the screen
@@ -211,28 +292,28 @@ void loop() {
 
 void splashScreen() {
   // Warm up code
-  for(i = 0; i < 100; i++) {
+  for(loadingPercent = 0; loadingPercent < 100; loadingPercent++) {
     display.clearDisplay(); // Clears everything off the screen
     display.setTextSize(2); // Set text size
     display.setTextColor(WHITE); // Set text colour
     display.setCursor(5,0); // Set cursor postion
     display.println("Warming up"); // Print to screen
     
-    if (i < 10) { // If its a single digit number the centring needs to be different
+    if (loadingPercent < 10) { // If its a single digit number the centring needs to be different
       display.setCursor(55,20); // Set cursor postion
-      display.print(i); // Print to screen
+      display.print(loadingPercent); // Print to screen
       display.print("%"); // Print to screen
     }
     
-    else if (i >= 10) { // If its a double digit number the centring needs to be different
+    else if (loadingPercent >= 10) { // If its a double digit number the centring needs to be different
       display.setCursor(50,20); // Set cursor postion
-      display.print(i); // Print to screen
+      display.print(loadingPercent); // Print to screen
       display.print("%"); // Print to screen
     }
     
-    else if (i == 100) { // If its a triple digit number the centring needs to be different
+    else if (loadingPercent == 100) { // If its a triple digit number the centring needs to be different
       display.setCursor(40,20); // Set cursor postion
-      display.print(i); // Print to screen
+      display.print(loadingPercent); // Print to screen
       display.print("%"); // Print to screen
     }
     
@@ -246,3 +327,4 @@ void splashScreen() {
   startSplash = 5; // Sets startSplash to 5 so it will skip the countdown when done
   firstRun = 0; // Sets firstRun to 0 so it wouldnt run the warmup code again
 }
+
