@@ -1,0 +1,87 @@
+Cmp-Mod V01 Created by CvPcb (22-Jun-2014 BZR 4027)-stable date = Wed 17 Dec 2014 21:47:12 GMT
+
+BeginCmp
+TimeStamp = /5489FFCE;
+Reference = 0.1uf1;
+ValeurCmp = C;
+IdModule  = C1;
+EndCmp
+
+BeginCmp
+TimeStamp = /5489FF92;
+Reference = 10K1;
+ValeurCmp = R;
+IdModule  = R4-5;
+EndCmp
+
+BeginCmp
+TimeStamp = /5489FF7F;
+Reference = 16Mhz1;
+ValeurCmp = CRYSTAL;
+IdModule  = Crystal_custom;
+EndCmp
+
+BeginCmp
+TimeStamp = /5489FFB0;
+Reference = 22uf1;
+ValeurCmp = C;
+IdModule  = C1;
+EndCmp
+
+BeginCmp
+TimeStamp = /5489FFBF;
+Reference = 22uf2;
+ValeurCmp = C;
+IdModule  = C1;
+EndCmp
+
+BeginCmp
+TimeStamp = /548D94AC;
+Reference = BT1;
+ValeurCmp = BATTERY;
+IdModule  = Battery_headers;
+EndCmp
+
+BeginCmp
+TimeStamp = /5489F987;
+Reference = IC1;
+ValeurCmp = ATMEGA328-P;
+IdModule  = DIP_28_300_SOCKET;
+EndCmp
+
+BeginCmp
+TimeStamp = /548D949D;
+Reference = SW2;
+ValeurCmp = SW_PUSH;
+IdModule  = PUSH_BUTTONS_CUSTOM;
+EndCmp
+
+BeginCmp
+TimeStamp = /548D948E;
+Reference = SW3;
+ValeurCmp = SW_PUSH;
+IdModule  = PUSH_BUTTONS_CUSTOM;
+EndCmp
+
+BeginCmp
+TimeStamp = /548D9436;
+Reference = U1;
+ValeurCmp = MQ-3;
+IdModule  = MQ-3;
+EndCmp
+
+BeginCmp
+TimeStamp = /548D985C;
+Reference = U2;
+ValeurCmp = FTDI;
+IdModule  = FTDI;
+EndCmp
+
+BeginCmp
+TimeStamp = /5489FEEB;
+Reference = U3;
+ValeurCmp = OLED;
+IdModule  = OLED_HEADER;
+EndCmp
+
+EndListe
